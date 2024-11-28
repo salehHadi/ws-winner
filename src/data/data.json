@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1000000001,
+    "image": "/productImage.png",
+    "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
+    "productState": "متوفر",
+    "variant": [
+      {
+        "capsulesNo": "60",
+        "price": "89.99",
+        "isActive": true
+      },
+      {
+        "capsulesNo": "120",
+        "price": "105.99",
+        "isActive": false
+      }
+    ]
+  },
+  {
+    "id": 1000000002,
+    "image": "/productImage2.png",
+    "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
+    "productState": "متوفر",
+    "variant": [
+      {
+        "capsulesNo": "60",
+        "price": "89.99",
+        "isActive": true
+      },
+      {
+        "capsulesNo": "120",
+        "price": "105.99",
+        "isActive": false
+      }
+    ]
+  },
+  {
+    "id": 1000000003,
+    "image": "/productImage.png",
+    "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
+    "productState": "متوفر",
+    "variant": [
+      {
+        "capsulesNo": "60",
+        "price": "89.99",
+        "isActive": true
+      },
+      {
+        "capsulesNo": "120",
+        "price": "105.99",
+        "isActive": false
+      }
+    ]
+  },
+  {
+    "id": 1000000004,
+    "image": "/productImage2.png",
+    "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
+    "productState": "متوفر",
+    "variant": [
+      {
+        "capsulesNo": "60",
+        "price": "89.99",
+        "isActive": true
+      },
+      {
+        "capsulesNo": "120",
+        "price": "105.99",
+        "isActive": false
+      }
+    ]
+  }
+]
