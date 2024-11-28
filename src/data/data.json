@@ -1,7 +1,7 @@
 [
   {
     "id": 1000000001,
-    "image": "/productImage.png",
+    "image": "https://i.ibb.co/ZYjRyjH/product-Image2.png",
     "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
     "productState": "متوفر",
     "variant": [
@@ -19,7 +19,7 @@
   },
   {
     "id": 1000000002,
-    "image": "/productImage2.png",
+    "image": "https://i.ibb.co/YLy08Yc/product-Image.png",
     "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
     "productState": "متوفر",
     "variant": [
@@ -37,7 +37,7 @@
   },
   {
     "id": 1000000003,
-    "image": "/productImage.png",
+    "image": "https://i.ibb.co/ZYjRyjH/product-Image2.png",
     "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
     "productState": "متوفر",
     "variant": [
@@ -55,7 +55,7 @@
   },
   {
     "id": 1000000004,
-    "image": "/productImage2.png",
+    "image": "https://i.ibb.co/YLy08Yc/product-Image.png",
     "title": "حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية للأطفال - مع فيتامين C وD3 والزنك",
     "productState": "متوفر",
     "variant": [
