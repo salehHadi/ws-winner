@@ -17,10 +17,10 @@ export const VisionContainer = styled(Box)(({ theme }) => ({
 
 export const VisionMessage = styled(Typography)(({ theme }) => ({
   fontWeight: FontWeight.bold,
-  fontSize: FontSize.size1,
+  fontSize: FontSize.size3,
   color: Colors.white,
   [theme.breakpoints.up("md")]: {
-    fontSize: FontSize.size2,
+    fontSize: FontSize.size1,
   },
 }));
 

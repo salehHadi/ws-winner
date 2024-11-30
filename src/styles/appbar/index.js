@@ -71,7 +71,7 @@ export const MyListDesktop = styled(List)(({ type }) => ({
   flexGrow: 3,
   justifyContent: "center",
   alignItems: "center",
-  gap: type === "row" ? "56px" : "4px",
+  gap: type === "row" ? "32px" : "4px",
 
   width: "max-content",
 }));

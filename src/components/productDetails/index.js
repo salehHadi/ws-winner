@@ -1,5 +1,12 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import { FlexContainer, ItemText, ItemText2, ItemText3 } from "../../styles";
+import {
+  CartIcon,
+  FlexContainer,
+  ItemText,
+  ItemText2,
+  ItemText3,
+  ItemText4,
+} from "../../styles";
 
 // import ProductDetailsMobile from "./productDetailsMobile";
 // import ProductDetailsDesktop from "./productDetailsDesktop";
@@ -10,7 +17,7 @@ import {
   CounterContainer,
   FiledInput,
 } from "../../styles/productDetails";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import data from "../../data/data.json";
 import { useState } from "react";
 
@@ -48,9 +55,11 @@ export default function ProductDetails() {
           width: "100%",
           justifyContent: "end",
           gap: "8px",
+          marginBottom: "20px",
+          marginTop: "-20px",
         }}
       >
-        <ItemText2
+        <ItemText4
           sx={{
             color: Colors.color6,
             whiteSpace: "nowrap",
@@ -61,11 +70,15 @@ export default function ProductDetails() {
           }}
         >
           {productDetails.title}
-        </ItemText2>
-        <ItemText2>/</ItemText2>
-        <ItemText2>جميع المنتجات</ItemText2>
-        <ItemText2>/</ItemText2>
-        <ItemText2>الصفحة الرئيسية</ItemText2>
+        </ItemText4>
+        <ItemText4>/</ItemText4>
+        <Link to="/shop">
+          <ItemText4>جميع المنتجات</ItemText4>
+        </Link>
+        <ItemText4>/</ItemText4>
+        <Link to="/">
+          <ItemText4>الصفحة الرئيسية</ItemText4>
+        </Link>
       </FlexContainer>
 
       {/* Product details */}
@@ -93,15 +106,15 @@ export default function ProductDetails() {
             type="column"
             gap={2}
             sx={{
-              borderTop: `2px solid ${Colors.color1}`,
-              borderBottom: `2px solid ${Colors.color1}`,
+              borderTop: `1px solid ${Colors.color1}`,
+              borderBottom: `1px solid ${Colors.color1}`,
               padding: "4px 0",
             }}
           >
-            <ItemText>{productDetails.title}</ItemText>
-            <ItemText
+            <ItemText2>{productDetails.title}</ItemText2>
+            <ItemText2
               sx={{
-                borderTop: `2px solid ${Colors.color1}`,
+                borderTop: `1px solid ${Colors.color1}`,
                 width: "100%",
                 textAlign: "end",
                 padding: "4px 0",
@@ -109,7 +122,7 @@ export default function ProductDetails() {
               }}
             >
               .. {productDetails.productState}
-            </ItemText>
+            </ItemText2>
           </FlexContainer>
 
           {/* Selection Part */}
@@ -124,7 +137,7 @@ export default function ProductDetails() {
                   onClick={() => activationStatues(el.capsulesNo)}
                   type="column"
                   sx={{
-                    border: `2px solid ${Colors.color4}`,
+                    border: `1px solid ${Colors.color4}`,
                     borderRadius: "4px",
                     padding: "4px",
                     opacity: el.isActive ? "100%" : "50%",
@@ -196,8 +209,8 @@ export default function ProductDetails() {
                   onClick={() => setProductCount((pre) => pre + 1)}
                   sx={{
                     position: "absolute",
-                    right: "5px",
-                    top: "0px",
+                    right: matches ? "-20px" : "-1px",
+                    top: matches ? "1px" : "-1px",
                     fontSize: "20px",
                     // backgroundColor: "#D9D9D9",
                     padding: "4px 12px 8px",
@@ -213,8 +226,8 @@ export default function ProductDetails() {
                   }
                   sx={{
                     position: "absolute",
-                    left: "10px",
-                    top: "0px",
+                    left: matches ? "-0px" : "1px",
+                    top: matches ? "1px" : "-1px",
                     fontSize: "20px",
                     // backgroundColor: "#D9D9D9",
                     padding: "4px 12px 8px",
@@ -239,7 +252,13 @@ export default function ProductDetails() {
               </FlexContainer>
             )}
 
-            <AddToCartButton>آضف الى السله</AddToCartButton>
+            <AddToCartButton>
+              {" "}
+              <CartIcon
+                sx={{ width: "20px", height: "18px", color: Colors.white }}
+              />
+              آضف الى السله
+            </AddToCartButton>
           </AddToCartContainer>
         </Grid>
       </Grid>

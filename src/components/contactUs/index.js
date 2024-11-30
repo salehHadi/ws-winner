@@ -10,6 +10,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import { Colors } from "../../styles/theme";
 import HouseSidingIcon from "@mui/icons-material/HouseSiding";
+import { Link } from "react-router-dom";
 
 export function ContactUs() {
   return (
@@ -98,24 +99,26 @@ export function ContactUs() {
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>
-      <ButtonContainer
-        sx={{
-          border: `1px solid ${Colors.color1}`,
-          borderRadius: "4px",
-          padding: "10px",
-          gap: "10px",
-          maxWidth: "max-content",
-        }}
-      >
-        {/* <img
+      <Link to="/shop">
+        <ButtonContainer
+          sx={{
+            border: `1px solid ${Colors.color1}`,
+            borderRadius: "4px",
+            padding: "10px",
+            gap: "10px",
+            maxWidth: "max-content",
+          }}
+        >
+          {/* <img
           src="/storeIcon.svg"
           alt="store Icon"
           style={{ width: "27px", height: "22px" }}
         /> */}
 
-        <HouseSidingIcon />
-        <ItemText2>استعراض كافة المنتجات</ItemText2>
-      </ButtonContainer>
+          <HouseSidingIcon />
+          <ItemText2>استعراض كافة المنتجات</ItemText2>
+        </ButtonContainer>
+      </Link>
     </FlexContainer>
   );
 }

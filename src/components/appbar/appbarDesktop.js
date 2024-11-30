@@ -4,6 +4,7 @@ import {
   CartIcon,
   FlexContainer,
   ItemText,
+  ItemText2,
 } from "../../styles";
 import {
   AppbarContainer,
@@ -31,7 +32,7 @@ export default function AppbarDesktop({ matches }) {
             <LogoImage
               src="https://i.ibb.co/ZdSyTgL/logo512.png"
               alt="logo"
-              width={"99px"}
+              width={"72px"}
             />
           </Link>
         </FlexContainer>
@@ -52,23 +53,27 @@ export default function AppbarDesktop({ matches }) {
         </FlexContainer>
       </AppbarContainer>
 
-      <MyListDesktop type="row">
-        <Link to="/">
-          <ButtonContainerDesktop>
-            <ItemText>.. من نحن</ItemText>
-          </ButtonContainerDesktop>
-        </Link>
-        <Link to="/shop">
-          <ButtonContainerDesktop>
-            <ItemText>المتجر</ItemText>
-          </ButtonContainerDesktop>
-        </Link>
-        <Link to="/">
-          <ButtonContainerDesktop>
-            <ItemText>الرئيسية</ItemText>
-          </ButtonContainerDesktop>
-        </Link>
-      </MyListDesktop>
+      <FlexContainer
+        sx={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", width: "100%" }}
+      >
+        <MyListDesktop type="row">
+          <Link to="/">
+            <ButtonContainerDesktop>
+              <ItemText2>.. من نحن</ItemText2>
+            </ButtonContainerDesktop>
+          </Link>
+          <Link to="/shop">
+            <ButtonContainerDesktop>
+              <ItemText2>المتجر</ItemText2>
+            </ButtonContainerDesktop>
+          </Link>
+          <Link to="/">
+            <ButtonContainerDesktop>
+              <ItemText2>الرئيسية</ItemText2>
+            </ButtonContainerDesktop>
+          </Link>
+        </MyListDesktop>
+      </FlexContainer>
     </>
   );
 }

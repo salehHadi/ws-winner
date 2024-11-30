@@ -10,6 +10,7 @@ import {
   VisionMessage,
 } from "../../styles/promotionMessage";
 import { useEffect, useState } from "react";
+import { ItemText2, ItemText4 } from "../../styles";
 
 export default function PromotionMessage() {
   const messages = [
@@ -70,7 +71,9 @@ export default function PromotionMessage() {
             </PromotionContainer>
           </Slide>
           <ContactContainer>
-            <Text>خدمة العملاء: 00966576638198</Text>
+            <a style={{ color: "#FFF" }} href="https://wa.me/+966576638198">
+              <ItemText4>خدمة العملاء: 00966576638198</ItemText4>
+            </a>
           </ContactContainer>
         </Container>
       </SecondContainer>

@@ -19,6 +19,7 @@ export const FooterContainer = styled(Box)(({ theme }) => ({
 export const FooterUpperContainer = styled(Container)(({ theme }) => ({
   display: "grid",
   gridTemplateColumns: "repeat(2, 1fr)",
+  alignItems: "start",
   [theme.breakpoints.up("sm")]: {
     gridTemplateColumns: "repeat(3, 1fr)",
   },
@@ -29,7 +30,6 @@ export const FooterUpperContainer = styled(Container)(({ theme }) => ({
 
 export const FooterElementContainer = styled(Box)(({ theme }) => ({
   display: "flex",
-
   justifyContent: "center",
   alignItems: "end",
   flexDirection: "column",

@@ -27,7 +27,8 @@ export const CounterContainer = styled(Box)(({ theme }) => ({
   marginTop: "8px",
   [theme.breakpoints.down("md")]: {
     marginTop: "0px",
-    width: "147px",
+    width: "108px",
+    height: "34px",
   },
 }));
 
@@ -43,14 +44,22 @@ export const FiledInput = styled("input")(({ theme }) => ({
 }));
 
 export const AddToCartButton = styled(Typography)(({ theme }) => ({
-  padding: "12px 48px 16px",
+  padding: "12px 38px 12px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "8px",
   width: "max-content",
   backgroundColor: Colors.color8,
   color: Colors.white,
   borderRadius: "8px",
   marginTop: "20px",
   fontWeight: "bold",
-  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.down("md")]: {
+    borderRadius: "2px",
+    fontSize: "16px",
+    padding: "12px 28px 12px",
+  },
 }));
 
 // <FlexContainer gap={3} mt={3}>

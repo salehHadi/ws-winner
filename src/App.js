@@ -5,7 +5,6 @@ import { Container, ThemeProvider } from "@mui/material";
 import theme from "./styles/theme";
 import Appbar from "./components/appbar";
 import PromotionMessage from "./components/promotionMessage";
-import { ContactUs } from "./components/contactUs";
 import { Footer } from "./components/footer";
 import { HomePage } from "./pages/homePage";
 import ShopPage from "./pages/shopPage";
@@ -33,7 +32,6 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
-        <ContactUs />
       </Container>
       <Footer />
     </ThemeProvider>

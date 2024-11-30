@@ -22,6 +22,14 @@ export const ItemText3 = styled(Typography)(() => ({
   fontWeight: FontWeight.regular,
   fontSize: FontSize.size1,
 }));
+export const ItemText4 = styled(Typography)(() => ({
+  fontWeight: FontWeight.bold,
+  fontSize: FontSize.size3,
+}));
+export const ItemText5 = styled(Typography)(() => ({
+  fontWeight: FontWeight.regular,
+  fontSize: FontSize.size3,
+}));
 
 export const ButtonContainerDesktop = styled(ListItemButton)(() => ({
   display: "flex",

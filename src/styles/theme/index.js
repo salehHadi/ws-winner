@@ -21,6 +21,7 @@ export const FontWeight = {
 export const FontSize = {
   size1: "12px",
   size2: "16px",
+  size3: "10px",
 };
 
 const theme = createTheme({
