@@ -21,15 +21,12 @@ export const AddToCartContainer = styled(Box)(({ type, theme }) => ({
 }));
 
 export const CounterContainer = styled(Box)(({ theme }) => ({
-  width: "187px",
-  height: "34px",
-  position: "relative",
-  marginTop: "8px",
-  [theme.breakpoints.down("md")]: {
-    marginTop: "0px",
-    width: "108px",
-    height: "34px",
-  },
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+
+  border: "1px solid black",
+  [theme.breakpoints.up("md")]: {},
 }));
 
 export const FiledInput = styled("input")(({ theme }) => ({
@@ -37,10 +34,11 @@ export const FiledInput = styled("input")(({ theme }) => ({
   width: "100%",
   height: "100%",
   border: "1px solid black",
-  borderRadius: "16px",
   fontSize: "20px",
   fontFamily: "Roboto Slab, serif",
-  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.up("md")]: {
+    padding: "4px",
+  },
 }));
 
 export const AddToCartButton = styled(Typography)(({ theme }) => ({

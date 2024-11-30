@@ -20,6 +20,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import data from "../../data/data.json";
 import { useState } from "react";
+import { useUIContext } from "../../contexts/ui";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -32,7 +33,7 @@ export default function ProductDetails() {
     data.find(({ id }) => id === productId)
   );
 
-  const [productCount, setProductCount] = useState(1);
+  const { addCount, decreaseCount, productCount } = useUIContext();
 
   function activationStatues(id) {
     const updatedVariants = productDetails.variant.map((el) => {
@@ -198,36 +199,9 @@ export default function ProductDetails() {
             <FlexContainer type="column">
               <ItemText2 color={Colors.color4}>عدد العبوات</ItemText2>
               <CounterContainer>
-                <FiledInput
-                  type="number"
-                  min={1}
-                  step={1}
-                  max={99}
-                  value={productCount}
-                />
                 <ItemText
-                  onClick={() => setProductCount((pre) => pre + 1)}
+                  onClick={() => decreaseCount()}
                   sx={{
-                    position: "absolute",
-                    right: matches ? "-20px" : "-1px",
-                    top: matches ? "1px" : "-1px",
-                    fontSize: "20px",
-                    // backgroundColor: "#D9D9D9",
-                    padding: "4px 12px 8px",
-                    borderRadius: "50%",
-                    cursor: "pointer",
-                  }}
-                >
-                  {"+"}
-                </ItemText>
-                <ItemText
-                  onClick={() =>
-                    setProductCount((pre) => (pre >= 2 ? pre - 1 : pre))
-                  }
-                  sx={{
-                    position: "absolute",
-                    left: matches ? "-0px" : "1px",
-                    top: matches ? "1px" : "-1px",
                     fontSize: "20px",
                     // backgroundColor: "#D9D9D9",
                     padding: "4px 12px 8px",
@@ -236,6 +210,26 @@ export default function ProductDetails() {
                   }}
                 >
                   {"-"}
+                </ItemText>
+
+                <FiledInput
+                  type="number"
+                  min={1}
+                  step={1}
+                  max={99}
+                  value={productCount}
+                />
+                <ItemText
+                  onClick={() => addCount()}
+                  sx={{
+                    fontSize: "20px",
+                    // backgroundColor: "#D9D9D9",
+                    padding: "4px 12px 8px",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                  }}
+                >
+                  {"+"}
                 </ItemText>
               </CounterContainer>
             </FlexContainer>

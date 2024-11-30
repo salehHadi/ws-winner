@@ -1,5 +1,11 @@
 import React from "react";
-import { FlexContainer, ItemText } from "../../styles";
+import {
+  FlexContainer,
+  ItemText,
+  ItemText2,
+  ItemText4,
+  ItemText5,
+} from "../../styles";
 import { Colors } from "../../styles/theme";
 import { useMediaQuery, useTheme } from "@mui/material";
 import {
@@ -8,13 +14,18 @@ import {
   ProductTitle,
   PurchaseButton,
   PurchaseContainer,
+  SelectedFiled,
   TextElement,
 } from "../../styles/cart";
+import { useUIContext } from "../../contexts/ui";
+import { CounterContainer, FiledInput } from "../../styles/productDetails";
 
 export default function CartComponent() {
   const theme = useTheme();
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { addCount, decreaseCount, productCount } = useUIContext();
   return (
     <FlexContainer type="column" gap={2} mb={40}>
       <FlexContainer
@@ -51,16 +62,13 @@ export default function CartComponent() {
           <CartItemContainer>
             <FlexContainer gap={3}>
               <TextElement>المجموع</TextElement>
-              <ItemText>|</ItemText>
+              <TextElement>|</TextElement>
               <TextElement>الكمية</TextElement>
-              <ItemText>|</ItemText>
+              <TextElement>|</TextElement>
               <TextElement>السعر</TextElement>
             </FlexContainer>
             <FlexContainer sx={{ alignItems: "end", gap: 1 }}>
-              <TextElement sx={{ fontSize: "8px" }}>
-                مجموع القطع ( ٢ قطعة )
-              </TextElement>
-              <ItemText>محتويات السلة</ItemText>
+              <ItemText2>محتويات السلة</ItemText2>
             </FlexContainer>
           </CartItemContainer>
 
@@ -68,18 +76,57 @@ export default function CartComponent() {
           <CartItemContainer>
             <FlexContainer gap={2}>
               <TextElement>105.99</TextElement>
-              <ItemText>|</ItemText>
-              <TextElement>
-                <input style={{ width: "60px" }} />
-              </TextElement>
-              <ItemText>|</ItemText>
+              <TextElement>|</TextElement>
+              <CounterContainer
+                sx={{
+                  width: "60px",
+                  height: "24px",
+                }}
+              >
+                <ItemText
+                  onClick={() => decreaseCount()}
+                  sx={{
+                    fontSize: "16px",
+                    // backgroundColor: "#D9D9D9",
+                    padding: "2px 4px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {"-"}
+                </ItemText>
+
+                <FiledInput
+                  type="number"
+                  min={1}
+                  step={1}
+                  max={99}
+                  value={productCount}
+                  sx={{
+                    fontSize: matches ? "12px" : "16px",
+                    height: matches ? "50%" : "70%",
+                    width: matches ? "50%" : "70%",
+                  }}
+                />
+                <ItemText
+                  onClick={() => addCount()}
+                  sx={{
+                    // backgroundColor: "#D9D9D9",
+                    fontSize: "12px",
+                    padding: "2px 4px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {"+"}
+                </ItemText>
+              </CounterContainer>
+              <TextElement>|</TextElement>
               <TextElement>105.99</TextElement>
             </FlexContainer>
 
             <FlexContainer
               sx={{ alignItems: "start", gap: 1, overflow: "hidden" }}
             >
-              <FlexContainer type="column" gap={2}>
+              <FlexContainer type="column" gap={1}>
                 <ProductTitle>
                   حلوى جيلاتينية - تركيبة معدنية متعددة الفيتامينات اليومية
                   للأطفال - مع فيتامين C وD3 والزنك
@@ -94,20 +141,28 @@ export default function CartComponent() {
                     width="100%"
                     textAlign="right"
                     sx={{
-                      fontSize: "10px",
+                      fontSize: "px",
                     }}
                   >
                     حجم العبوة
                   </TextElement>
-                  <select name="example" id="example" style={{ width: "70%" }}>
+                  <SelectedFiled
+                    name="example"
+                    id="example"
+                    style={{ width: "70%" }}
+                  >
                     <option value="value1">Option 1</option>
                     <option value="value2">Option 2</option>
                     <option value="value3">Option 3</option>
-                  </select>
+                  </SelectedFiled>
                 </FlexContainer>
               </FlexContainer>
               <ImageContainer>
-                <img src="/productImage2.png" alt="product img" width="100%" />
+                <img
+                  src="https://i.ibb.co/ZYjRyjH/product-Image2.png"
+                  alt="product img"
+                  width="100%"
+                />
               </ImageContainer>
             </FlexContainer>
           </CartItemContainer>

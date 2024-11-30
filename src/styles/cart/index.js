@@ -39,7 +39,7 @@ export const PurchaseButton = styled(Box)(() => ({
 export const CartItemContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
+  alignItems: "start",
   width: "100%",
   textAlign: "end",
 
@@ -59,7 +59,7 @@ export const ImageContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ProductTitle = styled(Typography)(({ theme }) => ({
-  fontSize: "10px",
+  fontSize: "8px",
   width: "100px",
   fontWeight: "bold",
   //   height: "50px",
@@ -68,7 +68,6 @@ export const ProductTitle = styled(Typography)(({ theme }) => ({
   WebkitBoxOrient: "vertical",
   WebkitLineClamp: 3, // Limit to 3 lines
   textOverflow: "ellipsis",
-  marginTop: "16px",
 
   [theme.breakpoints.up("md")]: {
     width: "250px",
@@ -77,12 +76,20 @@ export const ProductTitle = styled(Typography)(({ theme }) => ({
 }));
 
 export const TextElement = styled(Typography)(({ theme }) => ({
-  fontSize: "12px",
+  fontSize: "10px",
   fontWeight: "bold",
   textAlign: "center",
 
   [theme.breakpoints.up("md")]: {
     fontSize: "16px",
     fontWeight: "bold",
+  },
+}));
+
+export const SelectedFiled = styled("select")(({ theme }) => ({
+  width: "60%",
+  fontSize: "10px",
+  [theme.breakpoints.up("sm")]: {
+    height: "23px",
   },
 }));

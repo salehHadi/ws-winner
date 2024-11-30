@@ -49,7 +49,9 @@ export default function AppbarDesktop({ matches }) {
             <TypographyText>تسجيل الدخول / تسجيل حساب جديد</TypographyText>
             <UserIcon />
           </FlexContainer>
-          <CartIcon />
+          <Link to="/cart">
+            <CartIcon />
+          </Link>
         </FlexContainer>
       </AppbarContainer>
 

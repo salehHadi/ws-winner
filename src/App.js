@@ -11,30 +11,32 @@ import ShopPage from "./pages/shopPage";
 import ProductDetailsPage from "./pages/productDetailsPage";
 import CartPage from "./pages/cartPage";
 import "./styles/general.css";
-// import { UIProvider } from "./contexts/ui";
+import { UIProvider } from "./contexts/ui";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <PromotionMessage />
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "40px",
-        }}
-      >
-        <Appbar />
-        <Routes>
-          <Route path="/" exact element={<HomePage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/shop/:id" element={<ProductDetailsPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
-        </Routes>
-      </Container>
-      <Footer />
-    </ThemeProvider>
+    <UIProvider>
+      <ThemeProvider theme={theme}>
+        <PromotionMessage />
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "40px",
+          }}
+        >
+          <Appbar />
+          <Routes>
+            <Route path="/" exact element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shop/:id" element={<ProductDetailsPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
+          </Routes>
+        </Container>
+        <Footer />
+      </ThemeProvider>
+    </UIProvider>
   );
 }
 

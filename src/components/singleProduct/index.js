@@ -39,7 +39,8 @@ export default function SingleProduct(props) {
       type="column"
       sx={{
         gap: "20px",
-        width: matches ? "140px" : "206px",
+        width: matches ? "40%" : "206px",
+        maxWidth: "206px",
         border: `1px solid rgba(7, 36, 8, 0.2)`,
         borderRadius: "4px",
         padding: "10px",
