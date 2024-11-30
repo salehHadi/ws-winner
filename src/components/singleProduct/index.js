@@ -3,12 +3,12 @@ import {
   ButtonContainer,
   CartIcon,
   FlexContainer,
-  ItemText,
   ItemText2,
 } from "../../styles";
 
 import { Colors } from "../../styles/theme";
 import { useEffect, useState } from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export default function SingleProduct(props) {
   const { id, image, title, variant } = props.data;
@@ -27,12 +27,16 @@ export default function SingleProduct(props) {
     setProductPrice(price.price);
   }, [selectedValue]);
 
+  const theme = useTheme();
+
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <FlexContainer
       type="column"
       sx={{
         gap: "20px",
-        width: "206px",
+        width: matches ? "160px" : "206px",
         border: `1px solid rgba(7, 36, 8, 0.2)`,
         borderRadius: "4px",
         padding: "10px",
@@ -80,7 +84,7 @@ export default function SingleProduct(props) {
 
       <ButtonContainer sx={{ background: Colors.color1, borderRadius: "4px" }}>
         <CartIcon sx={{ width: "20px", height: "18px", color: Colors.white }} />
-        <ItemText color={Colors.white}>.. أضف الى السله</ItemText>
+        <ItemText2 color={Colors.white}>.. أضف الى السله</ItemText2>
       </ButtonContainer>
     </FlexContainer>
   );

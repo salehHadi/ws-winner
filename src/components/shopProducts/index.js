@@ -7,6 +7,7 @@ import {
 import { Colors } from "../../styles/theme";
 import SingleProduct from "../singleProduct";
 import data from "../../data/data.json";
+import HouseSidingIcon from "@mui/icons-material/HouseSiding";
 
 export default function ShopProducts() {
   return (
@@ -49,11 +50,12 @@ export default function ShopProducts() {
             justifyContent: "center",
           }}
         >
-          <img
+          {/* <img
             src="/storeIcon.svg"
             alt="store Icon"
             style={{ width: "27px", height: "22px" }}
-          />
+          /> */}
+          <HouseSidingIcon />
           <ItemText2>استعراض كافة المنتجات</ItemText2>
         </ButtonContainer>
       </FlexContainer>

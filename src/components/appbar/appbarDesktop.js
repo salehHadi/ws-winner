@@ -28,7 +28,11 @@ export default function AppbarDesktop({ matches }) {
           }}
         >
           <Link to="/">
-            <LogoImage src="/logo 1.svg" alt="logo" />
+            <LogoImage
+              src="https://i.ibb.co/ZdSyTgL/logo512.png"
+              alt="logo"
+              width={"99px"}
+            />
           </Link>
         </FlexContainer>
 

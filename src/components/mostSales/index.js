@@ -7,6 +7,7 @@ import {
 import { Colors } from "../../styles/theme";
 import SingleProduct from "../singleProduct";
 import data from "../../data/data.json";
+import HouseSidingIcon from "@mui/icons-material/HouseSiding";
 
 export default function MostSales() {
   return (
@@ -27,11 +28,12 @@ export default function MostSales() {
             maxWidth: "max-content",
           }}
         >
-          <img
+          {/* <img
             src="/storeIcon.svg"
             alt="store Icon"
             style={{ width: "27px", height: "22px" }}
-          />
+          /> */}
+          <HouseSidingIcon />
           <ItemText2>استعراض كافة المنتجات</ItemText2>
         </ButtonContainer>
 
@@ -62,11 +64,12 @@ export default function MostSales() {
           justifyContent: "center",
         }}
       >
-        <img
+        {/* <img
           src="/storeIcon.svg"
           alt="store Icon"
           style={{ width: "27px", height: "22px" }}
-        />
+        /> */}
+        <HouseSidingIcon />
         <ItemText2>استعراض كافة المنتجات</ItemText2>
       </ButtonContainer>
     </FlexContainer>

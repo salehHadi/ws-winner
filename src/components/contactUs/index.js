@@ -9,6 +9,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import { Colors } from "../../styles/theme";
+import HouseSidingIcon from "@mui/icons-material/HouseSiding";
 
 export function ContactUs() {
   return (
@@ -106,11 +107,13 @@ export function ContactUs() {
           maxWidth: "max-content",
         }}
       >
-        <img
+        {/* <img
           src="/storeIcon.svg"
           alt="store Icon"
           style={{ width: "27px", height: "22px" }}
-        />
+        /> */}
+
+        <HouseSidingIcon />
         <ItemText2>استعراض كافة المنتجات</ItemText2>
       </ButtonContainer>
     </FlexContainer>
