@@ -5,14 +5,7 @@ import {
   FooterElementContainer,
   FooterUpperContainer,
 } from "../../styles/footer";
-import {
-  FlexContainer,
-  ItemText,
-  ItemText2,
-  ItemText3,
-  ItemText4,
-  ItemText5,
-} from "../../styles";
+import { FlexContainer, ItemText2, ItemText5 } from "../../styles";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";

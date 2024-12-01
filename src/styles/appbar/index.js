@@ -1,4 +1,4 @@
-import { Box, List, ListItemButton, Typography } from "@mui/material";
+import { Box, List, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Colors, FontSize, FontWeight } from "../theme";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";

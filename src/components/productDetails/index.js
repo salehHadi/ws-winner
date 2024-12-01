@@ -8,7 +8,7 @@ import {
   ItemText4,
 } from "../../styles";
 
-// import ProductDetailsMobile from "./productDetailsMobile";
+// import getProductMobile from "./productDetailsMobile";
 // import ProductDetailsDesktop from "./productDetailsDesktop";
 import { Colors } from "../../styles/theme";
 import {
@@ -18,7 +18,7 @@ import {
   FiledInput,
 } from "../../styles/productDetails";
 import { Link, useParams } from "react-router-dom";
-import data from "../../data/data.json";
+// import data from "../../data/data.json";
 import { useState } from "react";
 import { useUIContext } from "../../contexts/ui";
 
@@ -29,23 +29,28 @@ export default function ProductDetails() {
   const productId = parseInt(id);
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [productDetails, setProductDetails] = useState(
-    data.find(({ id }) => id === productId)
-  );
+  const {
+    allProductsData,
+    setAllProductsData,
+    addCount,
+    decreaseCount,
+    productCount,
+  } = useUIContext();
 
-  const { addCount, decreaseCount, productCount } = useUIContext();
+  const getProduct = allProductsData.find(({ id }) => id === productId);
 
   function activationStatues(id) {
-    const updatedVariants = productDetails.variant.map((el) => {
+    const newVariant = getProduct.variant.map((el) => {
       return el.capsulesNo === id
         ? { ...el, isActive: true }
         : { ...el, isActive: false };
     });
 
-    setProductDetails((prevProduct) => ({
-      ...prevProduct,
-      variant: updatedVariants,
-    }));
+    setAllProductsData((pre) => {
+      return pre.map((el) =>
+        el.id === getProduct.id ? { ...el, variant: newVariant } : el
+      );
+    });
   }
 
   return (
@@ -70,7 +75,7 @@ export default function ProductDetails() {
             width: "150px",
           }}
         >
-          {productDetails.title}
+          {getProduct.title}
         </ItemText4>
         <ItemText4>/</ItemText4>
         <Link to="/shop">
@@ -94,12 +99,7 @@ export default function ProductDetails() {
         }}
       >
         <Grid item xs={12} md={3} lg={4}>
-          <img
-            src={productDetails.image}
-            alt="img"
-            width="100%"
-            height="100%"
-          />
+          <img src={getProduct.image} alt="img" width="100%" height="100%" />
         </Grid>
         <Grid item xs={12} md={5} lg={4}>
           {/* Top part */}
@@ -112,17 +112,18 @@ export default function ProductDetails() {
               padding: "4px 0",
             }}
           >
-            <ItemText2>{productDetails.title}</ItemText2>
+            <ItemText2>{getProduct.title}</ItemText2>
             <ItemText2
               sx={{
                 borderTop: `1px solid ${Colors.color1}`,
                 width: "100%",
                 textAlign: "end",
                 padding: "4px 0",
-                color: Colors.color5,
+                color:
+                  getProduct.productState === "متوفر" ? Colors.color5 : "red",
               }}
             >
-              .. {productDetails.productState}
+              .. {getProduct.productState}
             </ItemText2>
           </FlexContainer>
 
@@ -133,7 +134,7 @@ export default function ProductDetails() {
             </ItemText2>
 
             <FlexContainer color={Colors.color4} gap={2} flexWrap={"wrap"}>
-              {productDetails.variant.map((el) => (
+              {getProduct.variant.map((el) => (
                 <FlexContainer
                   onClick={() => activationStatues(el.capsulesNo)}
                   type="column"
@@ -170,24 +171,7 @@ export default function ProductDetails() {
                 marginBottom: 5,
               }}
             >
-              استمتع بفوائد مذهلة لصحة القلب والمناعة مع مكمل بربارين مع قرفة
-              سيلان، الذي يحتوي على 5000 مجم من المكونات الطبيعية القوية في كل
-              عبوة تضم 150 كبسولة. يجمع هذا المنتج بين خصائص البربارين المعروفة
-              والفوائد الصحية لقرفة سيلان، مما يجعله خيارًا مثاليًا لدعم نمط
-              حياة صحي. ### الفوائد الرئيسية: - **دعم صحة القلب:** يساعد
-              البربارين في تحسين مستويات الكولسترول وتنظيم ضغط الدم، مما يعزز
-              صحة القلب والشرايين. - **تعزيز المناعة:** قرفة سيلان تُعتبر مضادًا
-              للأكسدة، مما يساعد على تعزيز جهاز المناعة وحماية الجسم من الأمراض.
-              - **تحسين مستويات السكر:** يُسهم البربارين في تحسين حساسية
-              الأنسولين وتنظيم مستويات السكر في الدم، مما يفيد بشكل خاص مرضى
-              السكري. - **تحسين الهضم:** تمتاز قرفة سيلان بخصائصها المساعدة على
-              الهضم، مما يعزز من صحة الجهاز الهضمي بشكل عام. ### الاستخدام: توصى
-              بتناول كبسولة واحدة يوميًا مع كوب من الماء، ويفضل تناولها مع
-              الطعام لتحقيق أفضل النتائج. ### ملاحظة: قبل بدء استخدام بربارين مع
-              قرفة سيلان، يُفضل استشارة الطبيب، خاصةً للأشخاص الذين يتناولون
-              أدوية معينة أو يعانون من حالات صحية خاصة. اجعل بربارين مع قرفة
-              سيلان 5000 مجم جزءًا من روتينك اليومي، واستمتع بالفوائد الصحية
-              المتعددة التي تعزز من صحتك العامة وجودة حياتك!
+              {getProduct.description}
             </ItemText3>
           </FlexContainer>
         </Grid>

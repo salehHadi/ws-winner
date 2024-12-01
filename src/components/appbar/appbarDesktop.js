@@ -3,7 +3,6 @@ import {
   ButtonContainerDesktop,
   CartIcon,
   FlexContainer,
-  ItemText,
   ItemText2,
 } from "../../styles";
 import {

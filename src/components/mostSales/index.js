@@ -1,3 +1,4 @@
+import { useUIContext } from "../../contexts/ui";
 import {
   ButtonContainer,
   FlexContainer,
@@ -6,12 +7,12 @@ import {
 } from "../../styles";
 import { Colors } from "../../styles/theme";
 import SingleProduct from "../singleProduct";
-import data from "../../data/data.json";
 import HouseSidingIcon from "@mui/icons-material/HouseSiding";
 import { Link } from "react-router-dom";
 
 export default function MostSales() {
-  const first4Values = data.slice(0, 4);
+  const { allProductsData } = useUIContext();
+  const first4Values = allProductsData.slice(0, 4);
 
   return (
     <FlexContainer type="column" width="100%" gap="16px">

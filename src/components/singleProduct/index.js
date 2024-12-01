@@ -4,31 +4,38 @@ import {
   CartIcon,
   FlexContainer,
   ItemText2,
-  ItemText3,
   ItemText4,
   ItemText5,
 } from "../../styles";
 
 import { Colors } from "../../styles/theme";
-import { useEffect, useState } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useUIContext } from "../../contexts/ui";
 
 export default function SingleProduct(props) {
   const { id, image, title, variant } = props.data;
 
-  const [selectedValue, setSelectedValue] = useState(variant[0].capsulesNo);
-  const [productPrice, setProductPrice] = useState(null);
+  const { allProductsData, setAllProductsData } = useUIContext();
+
+  const getProduct = allProductsData.find((e) => e.id === id);
+  const optionValue = getProduct.variant.find((e) => e.isActive === true);
+
+  const price = variant.find((e) => e.isActive === true);
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value); // Update the state with the selected value
-    // console.log(event.target.value, variant, "here");
+    const newVariant = getProduct.variant.map((e) =>
+      e.capsulesNo === event.target.value
+        ? { ...e, isActive: true }
+        : { ...e, isActive: false }
+    );
+    setAllProductsData((pre) => {
+      return pre.map((el) =>
+        el.id === id ? { ...el, variant: newVariant } : el
+      );
+    });
   };
 
-  useEffect(() => {
-    const price = variant.find((e) => e.capsulesNo === selectedValue);
-
-    setProductPrice(price.price);
-  }, [selectedValue]);
+  // console.log(allProductsData, "allProductsData");
 
   const theme = useTheme();
 
@@ -51,6 +58,12 @@ export default function SingleProduct(props) {
         <ItemText4
           sx={{
             maxWidth: "100%",
+            height: "48px",
+            display: "-webkit-box",
+            overflow: "hidden",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 3, // Limit to 3 lines
+            textOverflow: "ellipsis",
             textAlign: "center",
             borderBottom: `1px solid ${Colors.color1}`,
             marginTop: "4px",
@@ -64,7 +77,7 @@ export default function SingleProduct(props) {
           name="example"
           id="example"
           style={{ width: "70%" }}
-          value={selectedValue}
+          value={optionValue.capsulesNo}
           onChange={handleChange}
         >
           {variant.map((e) => (
@@ -80,7 +93,7 @@ export default function SingleProduct(props) {
 
       <FlexContainer justifyContent="space-between" width="100%" mt={-1}>
         <ItemText2 width="100%" textAlign="start" paddingLeft={1}>
-          {productPrice}
+          {price.price}
         </ItemText2>
         <ItemText2 width="100%" textAlign="right">
           السعر

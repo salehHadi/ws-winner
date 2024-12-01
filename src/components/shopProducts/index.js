@@ -1,16 +1,13 @@
-import {
-  ButtonContainer,
-  FlexContainer,
-  ItemText,
-  ItemText2,
-} from "../../styles";
+import { useUIContext } from "../../contexts/ui";
+import { FlexContainer, ItemText2 } from "../../styles";
 import { Colors } from "../../styles/theme";
 import SingleProduct from "../singleProduct";
-import data from "../../data/data.json";
+
 import { Link } from "react-router-dom";
 // import HouseSidingIcon from "@mui/icons-material/HouseSiding";
 
 export default function ShopProducts() {
+  const { allProductsData } = useUIContext();
   return (
     <>
       <FlexContainer type="column" width="100%" gap="16px">
@@ -36,7 +33,7 @@ export default function ShopProducts() {
             flexWrap: "wrap",
           }}
         >
-          {data.map((e) => (
+          {allProductsData.map((e) => (
             <SingleProduct data={e} />
           ))}
         </FlexContainer>

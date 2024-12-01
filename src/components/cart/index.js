@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FlexContainer,
-  ItemText,
-  ItemText2,
-  ItemText4,
-  ItemText5,
-} from "../../styles";
+import { FlexContainer, ItemText, ItemText2 } from "../../styles";
 import { Colors } from "../../styles/theme";
 import { useMediaQuery, useTheme } from "@mui/material";
 import {
@@ -47,6 +41,7 @@ export default function CartComponent() {
         <PurchaseContainer
           borderRight={!matches && "1px solid black"}
           paddingRight={1}
+          paddingBottom={2}
           gap={2}
         >
           <FlexContainer gap={2}>
