@@ -34,7 +34,7 @@ export default function ShopProducts() {
           }}
         >
           {allProductsData.map((e) => (
-            <SingleProduct data={e} />
+            <SingleProduct data={e} key={e.id} />
           ))}
         </FlexContainer>
 

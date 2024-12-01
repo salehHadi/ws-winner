@@ -53,6 +53,14 @@ export default function ProductDetails() {
     });
   }
 
+  const addToCart = () => {
+    setAllProductsData((pre) => {
+      return pre.map((el) =>
+        el.id === id ? { ...el, addedToCart: true } : el
+      );
+    });
+  };
+
   return (
     <FlexContainer type="column" width="100%" gap="16px">
       {/* Navigation */}
@@ -230,7 +238,7 @@ export default function ProductDetails() {
               </FlexContainer>
             )}
 
-            <AddToCartButton>
+            <AddToCartButton onClick={() => addToCart()}>
               {" "}
               <CartIcon
                 sx={{ width: "20px", height: "18px", color: Colors.white }}

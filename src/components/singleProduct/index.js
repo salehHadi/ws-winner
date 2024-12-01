@@ -35,6 +35,14 @@ export default function SingleProduct(props) {
     });
   };
 
+  const addToCart = () => {
+    setAllProductsData((pre) => {
+      return pre.map((el) =>
+        el.id === id ? { ...el, addedToCart: true } : el
+      );
+    });
+  };
+
   // console.log(allProductsData, "allProductsData");
 
   const theme = useTheme();
@@ -81,7 +89,7 @@ export default function SingleProduct(props) {
           onChange={handleChange}
         >
           {variant.map((e) => (
-            <option value={e.capsulesNo} id={e.capsulesNo}>
+            <option value={e.capsulesNo} id={e.capsulesNo} key={e.capsulesNo}>
               {e.capsulesNo}
             </option>
           ))}
@@ -100,7 +108,10 @@ export default function SingleProduct(props) {
         </ItemText2>
       </FlexContainer>
 
-      <ButtonContainer sx={{ background: Colors.color1, borderRadius: "4px" }}>
+      <ButtonContainer
+        sx={{ background: Colors.color1, borderRadius: "4px" }}
+        onClick={() => addToCart()}
+      >
         <CartIcon sx={{ width: "20px", height: "18px", color: Colors.white }} />
         {matches ? (
           <ItemText4 color={Colors.white}>.. أضف الى السله</ItemText4>
