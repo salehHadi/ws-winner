@@ -7,21 +7,37 @@ export const useUIContext = () => useContext(UIContext);
 
 export const UIProvider = ({ children }) => {
   const [allProductsData, setAllProductsData] = useState(productData);
-  const [productCount, setProductCount] = useState(1);
+  const [cartProducts, setCartProducts] = useState([]);
 
-  console.log(allProductsData, "all");
+  const decreaseCount = (id) => {
+    setAllProductsData((pre) => {
+      return pre.map((el) =>
+        el.id === id ? { ...el, count: el.count >= 2 ? el.count - 1 : 1 } : el
+      );
+    });
+  };
 
-  const decreaseCount = () =>
-    setProductCount((pre) => (pre >= 2 ? pre - 1 : pre));
+  const addCount = (id) =>
+    setAllProductsData((pre) => {
+      return pre.map((el) =>
+        el.id === id ? { ...el, count: el.count >= 99 ? 99 : el.count + 1 } : el
+      );
+    });
 
-  const addCount = () => setProductCount((pre) => pre + 1);
+  const addToCart = (product) => {
+    const checkProduct = cartProducts.find((e) => e.id === product.id);
+
+    !checkProduct && setCartProducts((pre) => [...pre, product]);
+  };
 
   const value = {
     addCount,
     decreaseCount,
-    productCount,
     allProductsData,
     setAllProductsData,
+    setCartProducts,
+    cartProducts,
+    addToCart,
   };
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

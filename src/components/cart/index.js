@@ -1,7 +1,7 @@
 import React from "react";
 import { FlexContainer, ItemText, ItemText2 } from "../../styles";
 import { Colors } from "../../styles/theme";
-import { useMediaQuery, useTheme } from "@mui/material";
+import { ListItemButton, useMediaQuery, useTheme } from "@mui/material";
 import {
   CartItemContainer,
   ImageContainer,
@@ -13,23 +13,22 @@ import {
 } from "../../styles/cart";
 import { useUIContext } from "../../contexts/ui";
 import { CounterContainer, FiledInput } from "../../styles/productDetails";
+import { Link } from "react-router-dom";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function CartComponent() {
   const theme = useTheme();
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const {
-    addCount,
-    decreaseCount,
-    productCount,
-    allProductsData,
-    setAllProductsData,
-  } = useUIContext();
+  const { cartProducts, setCartProducts } = useUIContext();
 
-  const products = allProductsData.filter((e) => e.addedToCart === true);
+  const calculateTotal = cartProducts.map((el) => {
+    const getPriceSelected = el.variant.find((e) => e.isActive === true);
+    return el.count * parseFloat(getPriceSelected.price);
+  });
 
-  // const optionValue = getProduct.variant.find((e) => e.isActive === true);
+  const totalCart = calculateTotal.reduce((a, b) => a + b, 0);
 
   return (
     <FlexContainer type="column" gap={2} mb={40}>
@@ -42,15 +41,19 @@ export default function CartComponent() {
       >
         <TextElement sx={{ color: Colors.color6 }}>عربة التسوق</TextElement>
         <TextElement>/</TextElement>
-        <TextElement>جميع المنتجات</TextElement>
+        <Link to="/shop">
+          <TextElement>جميع المنتجات</TextElement>
+        </Link>
         <TextElement>/</TextElement>
-        <TextElement>الصفحة الرئيسية</TextElement>
+        <Link to="/">
+          <TextElement>الصفحة الرئيسية</TextElement>
+        </Link>
       </FlexContainer>
 
       <FlexContainer width="100%" gap={3}>
         {/* flex for buy buttom */}
 
-        {products.length > 0 && (
+        {cartProducts.length > 0 && (
           <PurchaseContainer
             borderRight={!matches && "1px solid black"}
             paddingRight={1}
@@ -58,7 +61,7 @@ export default function CartComponent() {
             gap={2}
           >
             <FlexContainer gap={2}>
-              <ItemText>105.99 SAR</ItemText>
+              <ItemText>{totalCart} SAR</ItemText>
               <ItemText>اجمالي العربة</ItemText>
             </FlexContainer>
 
@@ -68,9 +71,15 @@ export default function CartComponent() {
 
         {/* flex for items */}
 
-        <FlexContainer type="column" sx={{ width: "100%", gap: 3 }}>
+        <FlexContainer
+          type="column"
+          sx={{ width: "100%", gap: 3, justifyContent: "space-between" }}
+        >
           <CartItemContainer>
-            <FlexContainer gap={3}>
+            <FlexContainer
+              gap={3}
+              sx={{ width: "50%", justifyContent: "space-between" }}
+            >
               <TextElement>المجموع</TextElement>
               <TextElement>|</TextElement>
               <TextElement>الكمية</TextElement>
@@ -83,8 +92,8 @@ export default function CartComponent() {
           </CartItemContainer>
 
           {/* Product drtalies */}
-          {products.length > 0 ? (
-            products.map((el) => {
+          {cartProducts.length > 0 ? (
+            cartProducts.map((el) => {
               const optionValue = el.variant.find((e) => e.isActive === true);
 
               const handleChange = (event) => {
@@ -93,7 +102,7 @@ export default function CartComponent() {
                     ? { ...e, isActive: true }
                     : { ...e, isActive: false }
                 );
-                setAllProductsData((pre) => {
+                setCartProducts((pre) => {
                   return pre.map((element) =>
                     element.id === el.id
                       ? { ...element, variant: newVariant }
@@ -104,55 +113,113 @@ export default function CartComponent() {
 
               return (
                 <CartItemContainer>
-                  <FlexContainer gap={2}>
-                    <TextElement>
-                      {parseFloat(optionValue.price) * el.count}
-                    </TextElement>
-                    <TextElement>|</TextElement>
-                    <CounterContainer
-                      sx={{
-                        width: "60px",
-                        height: "24px",
-                      }}
+                  <FlexContainer
+                    gap={2}
+                    type="column"
+                    sx={{ justifyContent: "space-around", width: "50%" }}
+                  >
+                    <FlexContainer
+                      sx={{ width: "100%", justifyContent: "space-between" }}
                     >
-                      <ItemText
-                        onClick={() => decreaseCount()}
+                      <TextElement>
+                        {parseFloat(optionValue.price) * el.count}
+                      </TextElement>
+                      <TextElement>|</TextElement>
+                      <CounterContainer
                         sx={{
-                          fontSize: "16px",
-                          // backgroundColor: "#D9D9D9",
-                          padding: "2px 4px",
-                          cursor: "pointer",
+                          width: "60px",
+                          height: "24px",
                         }}
                       >
-                        {"-"}
-                      </ItemText>
+                        <ListItemButton
+                          onClick={() => {
+                            setCartProducts((pre) => {
+                              return pre.map((element) =>
+                                element.id === el.id
+                                  ? {
+                                      ...element,
+                                      count:
+                                        element.count >= 2
+                                          ? element.count - 1
+                                          : 1,
+                                    }
+                                  : element
+                              );
+                            });
+                          }}
+                          sx={{
+                            fontSize: "16px",
+                            padding: "2px 8px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor:
+                              el.count === 1 ? "#D9D9D9" : "white",
+                          }}
+                          disabled={el.count === 1 ? true : false}
+                        >
+                          {"-"}
+                        </ListItemButton>
 
-                      <FiledInput
-                        type="number"
-                        min={1}
-                        step={1}
-                        max={99}
-                        value={el.count}
-                        sx={{
-                          fontSize: matches ? "12px" : "16px",
-                          height: matches ? "50%" : "70%",
-                          width: matches ? "50%" : "70%",
-                        }}
-                      />
-                      <ItemText
-                        onClick={() => addCount()}
-                        sx={{
-                          // backgroundColor: "#D9D9D9",
-                          fontSize: "12px",
-                          padding: "2px 4px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {"+"}
-                      </ItemText>
-                    </CounterContainer>
-                    <TextElement>|</TextElement>
-                    <TextElement>{optionValue.price}</TextElement>
+                        <FiledInput
+                          type="number"
+                          min={1}
+                          step={1}
+                          max={99}
+                          value={el.count}
+                          sx={{
+                            fontSize: matches ? "12px" : "16px",
+                            height: matches ? "50%" : "70%",
+                            width: matches ? "50%" : "70%",
+                          }}
+                        />
+                        <ListItemButton
+                          onClick={() => {
+                            setCartProducts((pre) => {
+                              return pre.map((element) =>
+                                element.id === el.id
+                                  ? {
+                                      ...element,
+                                      count:
+                                        element.count >= 99
+                                          ? 99
+                                          : element.count + 1,
+                                    }
+                                  : element
+                              );
+                            });
+                          }}
+                          sx={{
+                            fontSize: "12px",
+                            padding: "2px 8px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor:
+                              el.count >= 99 ? "#D9D9D9" : "white",
+                          }}
+                          disabled={el.count >= 99 ? true : false}
+                        >
+                          {"+"}
+                        </ListItemButton>
+                      </CounterContainer>
+                      <TextElement>|</TextElement>
+                      <TextElement>{optionValue.price}</TextElement>
+                    </FlexContainer>
+
+                    <FlexContainer>
+                      <ListItemButton>
+                        <DeleteForeverIcon
+                          onClick={() =>
+                            setCartProducts((pre) => {
+                              return pre.filter(
+                                (element) => element.id !== el.id
+                              );
+                            })
+                          }
+                        />
+                      </ListItemButton>
+                    </FlexContainer>
                   </FlexContainer>
 
                   <FlexContainer

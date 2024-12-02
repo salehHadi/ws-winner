@@ -1,4 +1,4 @@
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, ListItemButton, useMediaQuery, useTheme } from "@mui/material";
 import {
   CartIcon,
   FlexContainer,
@@ -8,8 +8,6 @@ import {
   ItemText4,
 } from "../../styles";
 
-// import getProductMobile from "./productDetailsMobile";
-// import ProductDetailsDesktop from "./productDetailsDesktop";
 import { Colors } from "../../styles/theme";
 import {
   AddToCartButton,
@@ -18,8 +16,7 @@ import {
   FiledInput,
 } from "../../styles/productDetails";
 import { Link, useParams } from "react-router-dom";
-// import data from "../../data/data.json";
-import { useState } from "react";
+
 import { useUIContext } from "../../contexts/ui";
 
 export default function ProductDetails() {
@@ -34,7 +31,7 @@ export default function ProductDetails() {
     setAllProductsData,
     addCount,
     decreaseCount,
-    productCount,
+    addToCart,
   } = useUIContext();
 
   const getProduct = allProductsData.find(({ id }) => id === productId);
@@ -53,16 +50,10 @@ export default function ProductDetails() {
     });
   }
 
-  const addToCart = () => {
-    setAllProductsData((pre) => {
-      return pre.map((el) =>
-        el.id === id ? { ...el, addedToCart: true } : el
-      );
-    });
-  };
+  const optionValue = getProduct.variant.find((e) => e.isActive === true);
 
   return (
-    <FlexContainer type="column" width="100%" gap="16px">
+    <FlexContainer type="column" width="100%" gap="16px" key={getProduct.id}>
       {/* Navigation */}
       <FlexContainer
         sx={{
@@ -191,38 +182,46 @@ export default function ProductDetails() {
             <FlexContainer type="column">
               <ItemText2 color={Colors.color4}>عدد العبوات</ItemText2>
               <CounterContainer>
-                <ItemText
-                  onClick={() => decreaseCount()}
+                <ListItemButton
+                  onClick={() => decreaseCount(getProduct.id)}
                   sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                     fontSize: "20px",
-                    // backgroundColor: "#D9D9D9",
-                    padding: "4px 12px 8px",
-                    borderRadius: "50%",
-                    cursor: "pointer",
+                    fontWeight: "bold",
+                    backgroundColor:
+                      getProduct.count === 1 ? "#D9D9D9" : "white",
                   }}
+                  disabled={getProduct.count === 1 ? true : false}
                 >
                   {"-"}
-                </ItemText>
+                </ListItemButton>
 
                 <FiledInput
                   type="number"
                   min={1}
                   step={1}
                   max={99}
-                  value={productCount}
+                  value={getProduct.count}
                 />
-                <ItemText
-                  onClick={() => addCount()}
+
+                <ListItemButton
+                  onClick={() => addCount(getProduct.id)}
                   sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                     fontSize: "20px",
-                    // backgroundColor: "#D9D9D9",
-                    padding: "4px 12px 8px",
-                    borderRadius: "50%",
-                    cursor: "pointer",
+                    fontWeight: "bold",
+
+                    backgroundColor:
+                      getProduct.count >= 99 ? "#D9D9D9" : "white",
                   }}
+                  disabled={getProduct.count >= 99 ? true : false}
                 >
                   {"+"}
-                </ItemText>
+                </ListItemButton>
               </CounterContainer>
             </FlexContainer>
 
@@ -232,13 +231,13 @@ export default function ProductDetails() {
                   fontFamily={"Roboto Slab, serif"}
                   color={Colors.color5}
                 >
-                  115.00 SAR
+                  {optionValue.price * getProduct.count}
                 </ItemText>
                 <ItemText fontFamily={"Roboto Slab, serif"}>الاجمالي</ItemText>
               </FlexContainer>
             )}
 
-            <AddToCartButton onClick={() => addToCart()}>
+            <AddToCartButton onClick={() => addToCart(getProduct)}>
               {" "}
               <CartIcon
                 sx={{ width: "20px", height: "18px", color: Colors.white }}

@@ -54,7 +54,7 @@ export default function MostSales() {
         }}
       >
         {first4Values.map((e) => (
-          <SingleProduct data={e} />
+          <SingleProduct data={e} key={e.id} />
         ))}
       </FlexContainer>
 

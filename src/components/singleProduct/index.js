@@ -15,7 +15,7 @@ import { useUIContext } from "../../contexts/ui";
 export default function SingleProduct(props) {
   const { id, image, title, variant } = props.data;
 
-  const { allProductsData, setAllProductsData } = useUIContext();
+  const { allProductsData, setAllProductsData, addToCart } = useUIContext();
 
   const getProduct = allProductsData.find((e) => e.id === id);
   const optionValue = getProduct.variant.find((e) => e.isActive === true);
@@ -31,14 +31,6 @@ export default function SingleProduct(props) {
     setAllProductsData((pre) => {
       return pre.map((el) =>
         el.id === id ? { ...el, variant: newVariant } : el
-      );
-    });
-  };
-
-  const addToCart = () => {
-    setAllProductsData((pre) => {
-      return pre.map((el) =>
-        el.id === id ? { ...el, addedToCart: true } : el
       );
     });
   };
@@ -110,7 +102,8 @@ export default function SingleProduct(props) {
 
       <ButtonContainer
         sx={{ background: Colors.color1, borderRadius: "4px" }}
-        onClick={() => addToCart()}
+        // onClick={() => addToCart()}
+        onClick={() => addToCart(getProduct)}
       >
         <CartIcon sx={{ width: "20px", height: "18px", color: Colors.white }} />
         {matches ? (

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, ListItemButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Colors } from "../theme";
 
@@ -33,7 +33,7 @@ export const FiledInput = styled("input")(({ theme }) => ({
   textAlign: "center",
   width: "100%",
   height: "100%",
-  border: "1px solid black",
+  // border: "1px solid black",
   fontSize: "20px",
   fontFamily: "Roboto Slab, serif",
   [theme.breakpoints.up("md")]: {
@@ -41,7 +41,7 @@ export const FiledInput = styled("input")(({ theme }) => ({
   },
 }));
 
-export const AddToCartButton = styled(Typography)(({ theme }) => ({
+export const AddToCartButton = styled(ListItemButton)(({ theme }) => ({
   padding: "12px 38px 12px",
   display: "flex",
   justifyContent: "center",

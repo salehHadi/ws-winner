@@ -39,7 +39,7 @@ export const PurchaseButton = styled(Box)(() => ({
 export const CartItemContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "start",
+  alignItems: "center",
   width: "100%",
   textAlign: "end",
 
